@@ -38,12 +38,19 @@ app.get('/', (req, res) => {
 
 app.get('/authors/:id/', (req, res) => {
     const id = req.params.id
-    res.send(`${authors[id-1].name}, ${authors[id-1].nationality}`)
+    res.send(`${authors[id].name}, ${authors[id].nationality}`)
 })
 
-app.get('/authors/:id/books', (req, res) => {
+app.get('/json/authors/:id/books', (req, res) => {
     const id = req.params.id
-    res.send(`${authors[id-1].books}`)
+    res.send(`${authors[id].books}`)
+})
+
+app.get('/json/authors/:id/', (req, res) => {
+    const id = req.params.id
+    const {name, nationality} = authors[id]
+
+    res.josn()
 })
 
 
@@ -52,5 +59,5 @@ app.get('/authors/:id/books', (req, res) => {
 
 // Run server
 app.listen(port, () => {
-    console.log('Server started on port: ' + port)
+    console.log(`Server started on port:  ${port}`)
 })
